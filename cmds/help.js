@@ -6,7 +6,7 @@ module.exports = {
   name: 'help',
   description: 'Show available commands with descriptions',
   role: 1,
-  author: 'Bonummaster',
+  author: 'Pi Network',
   
   execute(senderId, args, pageAccessToken) {
     const commandsDir = path.join(__dirname, '../cmds');
@@ -32,7 +32,7 @@ module.exports = {
 
     // Display all commands if "help all" is provided
     if (args[0]?.toLowerCase() === 'all') {
-      const helpTextMessage = `╭─❍「 Pi Network Ai Created By BONUMMASTER 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 」\n│ [ Total Commands : ${totalCommands} ]\n│ ${commands.map((cmd, index) => `\n│ ${index + 1}. ${cmd.title}\n│ ○ ${cmd.description}`).join('')}\n│\n╰────────────⧕\n\n\n├─────☾⋆\n│ » Owner: GeoDevz69\n│ » Age: 14yr old\n│ » Status: Taken\n│ » Hobby: Siya lang\n╰────────────⧕`;
+      const helpTextMessage = `╭─❍「 Pi Network Ai Created By BONUMMASTER 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 」\n│ [ Total Commands : ${totalCommands} ]\n│ ${commands.map((cmd, index) => `\n│ ${index + 1}. ${cmd.title}\n│ ○ ${cmd.description}`).join('')}\n│\n╰────────────⧕\n\n\n├─────☾⋆\n│ » Passport Assistance\n│ » New Renewal LostPassport\n│ » Valid ID PSA NBI \n│ » LOSTPASSPORT Need affidsvit of lost police report\n╰────────────⧕`;
       return sendMessage(senderId, { text: helpTextMessage }, pageAccessToken);
     }
 
