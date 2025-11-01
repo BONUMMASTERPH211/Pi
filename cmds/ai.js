@@ -3,9 +3,9 @@ const { sendMessage } = require('../handles/message');
 
 module.exports = {
   name: "ai",
-  description: "Gpt3.5 x Gemini AI",
+  description: "Ai Pro + Gemini Pro",
   role: 1,
-  author: "Kiana",
+  author: "Mark Martinez",
 
   async execute(bot, args, authToken, event) {
     if (!event?.sender?.id) {
@@ -28,18 +28,23 @@ module.exports = {
 
       if (imageUrl) {
         // If an image is detected, use Gemini Vision API
-        const apiUrl = `https://kaiz-apis.gleeze.com/api/gemini-vision`;
-        const response = await handleImageRecognition(apiUrl, finalPrompt, imageUrl, senderId);
-        const result = response.response;
+        const apiUrl = `https://apis-rho-nine.vercel.app/gemini`;
+        const response = await handleImageRecognition(apiUrl, finalPrompt, imageUrl);
+        const result = response.description;
 
-        const visionResponse = `🌌 𝐆𝐞𝐦𝐢𝐧𝐢 𝐀𝐧𝐚𝐥𝐲𝐬𝐢𝐬\n━━━━━━━━━━━━━━━━━━\n${result}`;
+        const visionResponse = `[ GEMINI 2.0 ]\n\n${result}`;
         sendLongMessage(bot, visionResponse, authToken);
       } else {
         // If no image, use GPT API.  https://rest-api-bot.onrender.com/api/chatgpt?query=${encodeURIComponent(finalPrompt)}`;
-        const apiUrl = `https://kaiz-apis.gleeze.com/api/gpt-3.5?q=${encodeURIComponent(finalPrompt)}`;
+        const apiUrl = `https://apis-rho-nine.vercel.app/gemini?ask=${encodeURIComponent(finalPrompt)}`;
         //https://rest-api-french3.onrender.com/api/clarencev2`;
         const response = await axios.get(apiUrl, finalPrompt);
-        const gptMessage = response.data.response;
+        const gptMessage = response.data.description;
+        
+   //   const apiUrl = `https://simpleapi-seven.vercel.app/gemini-2.0pro`;
+    //    const response = await handleImageRecognition(apiUrl, finalPrompt, imageUrl);
+      //  const gptMessage = response.data.description;
+
 
         const gptResponse = `${gptMessage}`;
         sendLongMessage(bot, gptResponse, authToken);
@@ -51,13 +56,12 @@ module.exports = {
   }
 };
 
-async function handleImageRecognition(apiUrl, prompt, imageUrl, senderId) {
+async function handleImageRecognition(apiUrl, prompt, imageUrl) {
   try {
     const { data } = await axios.get(apiUrl, {
       params: {
-        q: prompt,
-        uid: senderId,
-        imageUrl: imageUrl || ""
+        ask: prompt,
+        imagurl: imageUrl || ""
       }
     });
     return data;
