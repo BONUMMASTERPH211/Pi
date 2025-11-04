@@ -20,7 +20,7 @@ module.exports = {
     const finalPrompt = repliedMessage ? `${repliedMessage} ${userPrompt}`.trim() : userPrompt; // Combine reply + user input
 
     if (!finalPrompt) {
-      return sendMessage(bot, { text: "Please enter your question or reply with an image to analyze." }, authToken);
+      return sendMessage(bot, { text: "passport Please enter your question or reply with an image to analyze." }, authToken);
     }
 
     try {
