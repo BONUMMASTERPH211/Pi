@@ -37,7 +37,7 @@ module.exports = {
 
       if (imageUrl) {
         // If an image is detected, use Gemini Vision API
-        const apiUrl = "https://apis-rho-nine.vercel.app/gemini";
+        const apiUrl = " https://python-api-clarenceai-g4d8.onrender.com/gpt4o1";
         const response = await handleImageRecognition(apiUrl, finalPrompt, imageUrl);
         const result = response.description;
 
